@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Euler::Application.load_tasks
+ProjectEuler::Application.load_tasks
