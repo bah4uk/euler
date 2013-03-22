@@ -26,6 +26,13 @@ class Euler
     max
   end
 
+  def self.ex6
+    sum_sq = (1..100).map{|c| c*c}.inject(:+)
+    sq_sum = (1..100).to_a.inject(:+)**2
+
+    sq_sum - sum_sq
+  end
+
   def self.ex5
     arr = (1..20).to_a
     smallest = 20
