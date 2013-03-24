@@ -131,7 +131,7 @@ class Euler
       end
     end
 
-    return flag
+    flag
   end 
 
   @@fib_cache = {1 => 1, 2 => 2}
