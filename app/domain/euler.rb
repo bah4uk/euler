@@ -109,7 +109,30 @@ class Euler
   end
 
 
+  def self.ex3
+    n = 600851475143
+    
+    (n-1).downto(1) do |num|
+      next if num.even?
+      return num if ( (n%num == 0) and prime?(num))
+    end
+  end
+
   private
+
+  def self.prime? n 
+    flag = true
+    (n-1).downto(2) do |num|
+      if (n%num != 0)
+        next
+      else
+        flag = false
+        break
+      end
+    end
+
+    return flag
+  end 
 
   @@fib_cache = {1 => 1, 2 => 2}
   def self.fib n
