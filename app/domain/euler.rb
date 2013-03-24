@@ -1,7 +1,6 @@
 class Euler
 
-  CURRENT_DIR   = File.dirname(__FILE__)
-  NUMBERS_PATH = File.join(CURRENT_DIR, '../exercises/problem13.txt')
+  CURRENT_DIR = File.dirname(__FILE__)
 
   def self.ex1
     (1...1000).to_a.select{|c| (c%3).zero? or (c%5).zero?}.inject(:+)
@@ -70,8 +69,9 @@ class Euler
   end
   
   def self.ex13
-    num = File.open(NUMBERS_PATH, "rb").read.split.map{|c| c.to_i}
-                                       .inject(:+).to_s[0..9].to_i
+    num = File.open(File.join(CURRENT_DIR, '../exercises/problem13.txt'), "rb")
+              .read.split.map{|c| c.to_i}
+    num.inject(:+).to_s[0..9].to_i
   end
 
   def self.ex16
@@ -84,6 +84,11 @@ class Euler
     str.gsub(/([-() ,])/, '').size
   end
 
+  # def self.ex18
+  #   num = File.open(File.join(CURRENT_DIR, '../exercises/problem18.txt'), "rb")
+  #             .read.split(/\n/) #.map{|c| c.to_i}
+  # end
+
   def self.ex19
     startDate = Date.new(1901, 1, 1)
     endDate = Date.new(2000,12,31)
@@ -92,5 +97,23 @@ class Euler
 
   def self.ex20
     (1..100).inject(:*).to_s.scan(/./).map{|c| c.to_i}.inject(:+)
+  end
+
+  def self.ex25
+    n = 2
+    while !(self.fib(n).to_s.length == 1000) do
+      @@fib_cache[n] = self.fib(n)
+      n = n + 1
+    end
+    n+1
+  end
+
+
+  private
+
+  @@fib_cache = {1 => 1, 2 => 2}
+  def self.fib n
+    return @@fib_cache[n] if @@fib_cache.has_key?(n)
+    return fib(n-1)+fib(n-2)
   end
 end
